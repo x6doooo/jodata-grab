@@ -1,0 +1,19 @@
+{
+  "name": "grab",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jodata-common": "^1.0.1",
+    "lodash": "^4.17.2",
+    "mongodb": "^2.2.12",
+    "node-schedule": "^1.2.0",
+    "request": "^2.79.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

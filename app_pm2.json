@@ -1,0 +1,17 @@
+[{
+  "name"             : "jodata-grab",
+  "cwd"              : "./",
+  "script"           : "index.js",
+  "exec_mode"        : "cluster",
+  "instances"        : 1,
+  "node_args"        : ["--harmony"],
+  "log_date_format"  : "YYYY-MM-DDTHH:mm:ssZ",
+  "error_file"       : "/home/fe/log/jodata-grab/log.stderr.log",
+  "out_file"         : "/home/fe/log/jodata-grab/log.stdout.log",
+  "pid_file"         : "../jodata-grab.pid",
+  "merge_logs"       : true,
+  "max_memory_restart" : "500M",
+  "env": {
+    "NODE_ENV": "prod"
+  }
+}]
