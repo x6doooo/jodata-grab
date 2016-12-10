@@ -78,28 +78,29 @@ const config = require('./config')[process.env.NODE_ENV];
     //         resolve(docs);
     //     });
     // });
-    //
+    // let checkExist = true;
     // let startTime = new Date();
     // while(list.length != 0) {
     //     console.log('------------------ new start ------------', list.length)
-    //     list = await loader.go(list, db, '1d', '730d', startTime);
+    //     list = await loader.go(list, db, '1h', '730d', startTime, checkExist);
     // }
+    //
     // console.log('done all');
 
 
     //------------ crontab --------------
-    schedule.scheduleJob('* * 7 * * *', async function() {
-        let list = await new Promise((resolve, reject) => {
-            db.collection('list').find().toArray((err, docs) => {
-                resolve(docs);
-            });
-        });
-        let startTime = new Date();
-        while(list.length != 0) {
-            console.log('------------------ new start ------------', list.length)
-            list = await loader.go(list, db, '1d', '30d', startTime);
-        }
-        console.log('done all');
+    schedule.scheduleJob('0 0 6 * * *', function() {
+        (async() => {
+            let list = await db.collection('list').find().toArray();
+            let dontCheckExist = false;
+            let startTime = new Date();
+            console.log('start-----');
+            while(list.length != 0) {
+                console.log('------------------ new start ------------', dontCheckExist)
+                list = await loader.go(list, db, '1h', '2d', startTime);
+            }
+            console.log('done all');
+        })();
     });
 
 
