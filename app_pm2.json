@@ -1,36 +1,17 @@
 [
  {
-  "name": "jodata-grab",
+  "name": "jodata-grab-2.0",
   "cwd": "./",
-  "script": "index.js",
-  "exec_mode": "cluster",
-  "instances": 1,
-  "node_args": [
-   "--harmony"
-  ],
-  "log_date_format": "YYYY-MM-DDTHH:mm:ssZ",
-  "error_file": "/home/fe/log/jodata-grab/log.stderr.log",
-  "out_file": "/home/fe/log/jodata-grab/log.stdout.log",
-  "pid_file": "../jodata-grab.pid",
-  "merge_logs": true,
-  "max_memory_restart": "800M",
-  "env": {
-   "NODE_ENV": "prod"
-  }
- },
- {
-  "name": "jodata-grab-0.2",
-  "cwd": "./",
-  "script": "index-new.js",
+  "script": "index-2.0.js",
   "exec_mode": "cluster",
   "instances": 1,
   "node_args": [
     "--harmony"
   ],
   "log_date_format": "YYYY-MM-DDTHH:mm:ssZ",
-  "error_file": "/home/fe/log/jodata-grab/log-0.2.stderr.log",
-  "out_file": "/home/fe/log/jodata-grab/log-0.2.stdout.log",
-  "pid_file": "../jodata-grab-0.2.pid",
+  "error_file": "/home/fe/log/jodata-grab/log-2.0.stderr.log",
+  "out_file": "/home/fe/log/jodata-grab/log-2.0.stdout.log",
+  "pid_file": "../jodata-grab-2.0.pid",
   "merge_logs": true,
   "max_memory_restart": "800M",
   "env": {
