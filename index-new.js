@@ -8,7 +8,7 @@
 // const googleFinance = require('./lib/googleFinance');
 const mongo = require('jodata-common/lib/mongo');
 const lodash = require('lodash');
-const loader = require('./lib/loader');
+const loader = require('./lib/loader-new');
 const schedule = require('node-schedule');
 const BaseRequest = require('jodata-common/lib/BaseRequest');
 const config = require('./config')[process.env.NODE_ENV];
@@ -30,7 +30,7 @@ const predication = require('./index-predication');
 
 
     //------------ crontab --------------
-    // schedule.scheduleJob('0 0 6 * * *', function () {
+    // schedule.scheduleJob('0 0 8 * * *', function () {
         (async() => {
             // init xueqiu
             // await xueqiu.init(db);
@@ -40,8 +40,10 @@ const predication = require('./index-predication');
                 let stocks = await db.listCollections().toArray();
                 for (let i = 0; i < stocks.length; i++) {
                     let name = stocks[i].name;
-                    if (name.indexOf('stock_') != -1) {
+                    if (name.indexOf('code_') != -1) {
                         await db.collection(stocks[i].name).drop();
+                    // } else if (name.indexOf('stock_') != -1) {
+                    //     await db.collection(stocks[i].name).drop();
                     }
                 }
             } catch (e) {
@@ -77,27 +79,26 @@ const predication = require('./index-predication');
                 list.push(item);
             });
 
-
             let dontCheckExist = false;
             let startTime = new Date();
             console.log('start-----');
             while (list.length != 0) {
                 console.log('------------------ new start ------------', dontCheckExist);
-                // list = await loader.go(list, db, '1m', '300d', startTime);
-                list = await loader.go(list, db, '1d', '2048d', startTime);
+                list = await loader.go(list, db, '1h', '1024d', startTime, false, 'code_');
+                // list = await loader.go(list, db, '1d', '1024d', startTime);
             }
             console.log('done all');
 
             // console.log('analyzer go!');
-            // // await analyzer.go(db);
+            // await analyzer.go(db);
             // console.log('analyzer done!');
 
 
         })();
     // });
     // console.log('predication go!');
-    // await predication.go(db);
-    // await predication.test(db);
+    // // await predication.go(db);
+    // // await predication.test(db);
     // console.log('predication done!');
 
 
